@@ -1,0 +1,46 @@
+.hero{
+  background-color: #333333;
+  color: white;
+  height: 200px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  p{
+    font-size: 20px;
+    margin-top: 10px;
+  }
+}
+.article{
+  &_section{
+    padding: 20px;
+  }
+  &_item{
+    border-bottom: 1px solid #dedede;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 14px;
+    .box{
+      align-items: center;
+      display: flex;
+      flex: 4;
+      &:last-child{
+        flex: 1;
+        justify-content: space-between;
+      }
+    }
+    .author{
+      color: #aaa4a1;
+      margin-left: 10px;
+    }
+    .trash{
+      display: none;
+    }
+    &:hover{
+      background-color: #fafafa;
+      .trash{
+        display: block;
+      }
+    }
+  }
+}

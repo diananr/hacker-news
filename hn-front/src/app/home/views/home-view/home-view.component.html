@@ -1,1 +1,18 @@
-<p>home-view works!</p>
+<div class="hero">
+  <h1>HN Feed</h1>
+  <p>We {{'<3'}} hacker news!</p>
+</div>
+<div class="article_section">
+    <div class="article_item" *ngFor="let article of articles">
+      <div class="box">
+        <p>{{article.story_title ? article.story_title : article.title}}</p>
+        <p class="author">- {{article.author}} -</p>
+      </div>
+      <div class="box">
+        <p>{{article.created_at | date}}</p>
+        <div class="trash">
+          <i>trash icon</i>
+        </div>
+      </div>
+    </div>
+</div>
