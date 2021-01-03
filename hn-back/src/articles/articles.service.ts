@@ -25,11 +25,11 @@ export class ArticlesService {
   }
 
   async findAll(): Promise<Article[]> {
-    return this.articleModel.find({isDeleted: null}).sort({'created_at': 'desc'}) .exec();
+    return this.articleModel.find({deleted_at: null}).sort({'created_at': 'desc'}) .exec();
   }
 
   async remove(articleId: number): Promise<any> {
-    return await this.articleModel.findOneAndUpdate({story_id: articleId}, {isDeleted: new Date()});
+    return await this.articleModel.findOneAndUpdate({story_id: articleId}, {deleted_at: new Date()});
   }
 
 }

@@ -28,7 +28,7 @@ export class Article {
   url: string;
 
   @Prop()
-  isDeleted: Date;
+  deleted_at: Date;
 
 }
 
