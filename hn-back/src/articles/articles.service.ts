@@ -17,19 +17,19 @@ export class ArticlesService {
     return this.httpService.get(url).toPromise()
       .then(response => {
         const articles = response.data;
-        return this.articleModel.insertMany(articles.hits);
+        return this.articleModel.insertMany(articles.hits, {ordered : false });
       })
       .catch(error => {
-        console.log('error', error);
+        console.error('error', error);
       })
   }
 
   async findAll(): Promise<Article[]> {
-    return this.articleModel.find().exec();
+    return this.articleModel.find({isDeleted: null}).sort({'created_at': 'desc'}) .exec();
   }
 
   async remove(articleId: number): Promise<any> {
-    return await this.articleModel.findByIdAndRemove(articleId);
+    return await this.articleModel.findOneAndUpdate({story_id: articleId}, {isDeleted: new Date()});
   }
 
 }

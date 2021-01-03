@@ -6,7 +6,7 @@ import { ArticlesModule } from './articles/articles.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRoot('mongodb://localhost/hacker-news'),
     ArticlesModule,
   ],
   controllers: [AppController],

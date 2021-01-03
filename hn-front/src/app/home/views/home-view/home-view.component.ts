@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticlesService } from 'src/app/core/services/articles.service';
 
 @Component({
   selector: 'app-home-view',
@@ -7,30 +8,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeViewComponent implements OnInit {
 
-  public articles = [
-    {
-      "created_at": "2020-12-31T01:18:01.000Z",
-      "title": null,
-      "url": null,
-      "author": "derefr",
-      "story_id": 25582187,
-      "story_title": "Show HN: PSX Party – Online Multiplayer Playstation 1 Emulator Using WebRTC",
-      "story_url": "https://psxparty.kosmi.io/?ref=hn1",
-    },
-    {
-			"created_at": "2020-12-31T01:01:16.000Z",
-			"title": null,
-			"url": null,
-			"author": "Jonnax",
-			"story_id": 25585953,
-			"story_title": "Intel Urged to Take 'Immediate Action' Amid Threats from Apple Silicon and AMD",
-			"story_url": "https://www.macrumors.com/2020/12/30/intel-urged-to-take-immediate-action-amid-threats/",
-    },
-  ]
+  public articles = []
 
-  constructor() { }
+  constructor(
+    private articlesService: ArticlesService,
+  ) { }
+
+  getArticles(){
+    this.articlesService.getAllArticles().subscribe(
+      (response: any)=>{
+        this.articles = response;
+      },
+      (error: any)=>{
+        console.log('error', error);
+      }
+    )
+  }
 
   ngOnInit(): void {
+    this.getArticles();
+  }
+
+  openArticle(article: any){
+    window.open(article.story_url);
+  }
+
+  deleteArticle(article: any){
+    this.articlesService.deleteArticle(article.story_id).subscribe(
+      (response: any)=>{
+        console.log('response', response);
+        this.getArticles();
+      },
+      (error: any)=>{
+        console.log('error', error);
+      }
+    )
   }
 
 }

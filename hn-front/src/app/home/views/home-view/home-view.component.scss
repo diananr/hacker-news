@@ -24,6 +24,9 @@
       align-items: center;
       display: flex;
       flex: 4;
+      &:first-child{
+        cursor: pointer;
+      }
       &:last-child{
         flex: 1;
         justify-content: space-between;
@@ -39,7 +42,9 @@
     &:hover{
       background-color: #fafafa;
       .trash{
-        display: block;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
       }
     }
   }

@@ -4,14 +4,14 @@
 </div>
 <div class="article_section">
     <div class="article_item" *ngFor="let article of articles">
-      <div class="box">
+      <div class="box" (click)="openArticle(article)">
         <p>{{article.story_title ? article.story_title : article.title}}</p>
         <p class="author">- {{article.author}} -</p>
       </div>
       <div class="box">
-        <p>{{article.created_at | date}}</p>
-        <div class="trash">
-          <i>trash icon</i>
+        <p>{{article.created_at | dateFormat }}</p>
+        <div class="trash" (click)="deleteArticle(article)">
+          <img src="/assets/images/icons/trash.png" alt="Delete">
         </div>
       </div>
     </div>

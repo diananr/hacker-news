@@ -26,7 +26,7 @@ export class ArticlesController {
     }
 
     return res.status(HttpStatus.OK).json({
-      message: 'Customer has been deleted',
+      message: 'Article has been deleted',
       article,
     });
   }

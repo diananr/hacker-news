@@ -12,7 +12,7 @@ export class Article {
   @Prop()
   created_at: string;
 
-  @Prop()
+  @Prop({unique: true})
   story_id: number;
 
   @Prop()
@@ -26,6 +26,9 @@ export class Article {
 
   @Prop()
   url: string;
+
+  @Prop()
+  isDeleted: Date;
 
 }
 
