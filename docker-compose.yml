@@ -1,0 +1,41 @@
+version: "3"
+services:
+  hn-front:
+    restart: always
+    container_name: hn-front
+    image: hn-front
+    build:
+      context: ./hn-front
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - hn-back
+    networks:
+      - nest-mean-network
+
+  hn-back:
+    restart: always
+    container_name: hn-back
+    image: hn-back
+    build:
+      context: ./hn-back
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - nest-mean-network
+
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - nest-mean-network
+
+networks:
+  nest-mean-network:
+    driver: bridge
