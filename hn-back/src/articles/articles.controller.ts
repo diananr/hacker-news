@@ -9,13 +9,13 @@ export class ArticlesController {
   ) {}
 
   @Get()
-  async getAllArticles(@Res() res) {
+  async getAllArticles() {
     const articles = await this.articlesService.findAll();
-    return res.status(HttpStatus.OK).json(articles);
+    return articles;
   }
 
   @Delete('/:id')
-  public async deleteCustomer(@Res() res, @Param('id') articleId: number) {
+  public async deleteArticle(@Param('id') articleId: number) {
     if (!articleId) {
       throw new NotFoundException('Article ID does not exist');
     }
@@ -24,11 +24,7 @@ export class ArticlesController {
     if (!article) {
       throw new NotFoundException('Article does not exist');
     }
-
-    return res.status(HttpStatus.OK).json({
-      message: 'Article has been deleted',
-      article,
-    });
+    return article;
   }
 
 }

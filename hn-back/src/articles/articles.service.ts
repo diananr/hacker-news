@@ -25,7 +25,7 @@ export class ArticlesService {
   }
 
   async findAll(): Promise<Article[]> {
-    return this.articleModel.find({deleted_at: null}).sort({'created_at': 'desc'}) .exec();
+    return this.articleModel.find({deleted_at: null}).sort({'created_at': 'desc'}).exec();
   }
 
   async remove(articleId: number): Promise<any> {
